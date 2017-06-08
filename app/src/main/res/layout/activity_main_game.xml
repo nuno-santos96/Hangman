@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"></LinearLayout>
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/letter"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="Insert a letter" />
+
+    <Button
+        android:id="@+id/guess_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/letter"
+        android:layout_alignBottom="@+id/letter"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_toEndOf="@+id/letter"
+        android:layout_toRightOf="@+id/letter"
+        android:onClick="guess_letter"
+        android:text="Guess" />
+
+    <ImageView
+        android:id="@+id/hang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/hm1" />
+
+    <TextView
+        android:id="@+id/guess_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/hang"
+        android:layout_alignStart="@+id/hang"
+        android:layout_below="@+id/hang"
+        android:layout_marginTop="84dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="36sp" />
+</RelativeLayout>
