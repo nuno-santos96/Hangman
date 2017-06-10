@@ -10,16 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import java.util.Arrays;
+
 public class choose_letter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_letter);
-        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        String[] items = {};
+        Bundle letters = getIntent().getExtras();
+        if (letters != null) {
+            String available_letters = letters.getString("available_letters");
+            items = available_letters.split("");
+            items = Arrays.copyOfRange(items, 1, items.length);
+        }
         Spinner dropdown = (Spinner)findViewById(R.id.spinner);
-        String[] items = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" +
-                "L", "M", "N", "O", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
     }

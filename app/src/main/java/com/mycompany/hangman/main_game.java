@@ -11,12 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class main_game extends AppCompatActivity {
     private List<String> theWord = new ArrayList<>();
     private List<String> display = new ArrayList<>();
-    private List<String> used_letters = new ArrayList<>();
+    private List<String> available_letters = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"));
     private int curr_image = 1;
 
     @Override
@@ -41,6 +42,7 @@ public class main_game extends AppCompatActivity {
 
     public void guess_letter_button(View v){
         Intent i = new Intent(this, choose_letter.class);
+        i.putExtra("available_letters", TextUtils.join("", available_letters));
         startActivityForResult(i, 1);
     }
 
@@ -66,23 +68,28 @@ public class main_game extends AppCompatActivity {
     }
 
     public void guess_letter(String letter) {
-        if (theWord.contains(letter)) {
-            for (int i = 0; i < theWord.size(); i++) {
-                if (theWord.get(i).equals(letter))
-                    display.set(i, letter);
+        boolean hit = false;
+        available_letters.remove(letter);
+        //TODO: add letter to used letters textview
+        for (int i = 0; i < theWord.size(); i++) {
+            if ((theWord.get(i).toLowerCase()).equals(letter.toLowerCase())){
+                display.set(i, theWord.get(i));
+                hit = true;
             }
+        }
+        if (hit) {
             updateDisplay();
-            if (TextUtils.join(" ", display).equals(TextUtils.join(" ", theWord))){
-                Intent intent = new Intent(this, word_screen.class);  //change to end_game activity
-                startActivity(intent);
+            if (TextUtils.join("", display).equals(TextUtils.join("", theWord))) {
+                //word successfully guessed - end game
                 finish();
             }
-        } else
+        } else {
             updateHang();
+        }
     }
 
     public void guess_word(String word) {
-        if (TextUtils.join(" ", theWord).equals(word)){
+        if (TextUtils.join("", theWord).equals(word)){
             Intent intent = new Intent(this, word_screen.class);  //change to end_game activity
             startActivity(intent);
             finish();
@@ -103,8 +110,7 @@ public class main_game extends AppCompatActivity {
         int hangID = res.getIdentifier("hm" + Integer.toString(curr_image) , "drawable", getPackageName());
         hang.setImageResource(hangID);
         if (curr_image == 7){
-            Intent intent = new Intent(this, word_screen.class);  //change to end_game activity
-            startActivity(intent);
+            //word not guessed - end game
             finish();
         }
     }

@@ -9,7 +9,9 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Escreva aqui a sua palavra" />
+        android:maxLength="50"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        android:hint="Insert the word to guess" />
 
     <Button
         android:layout_width="wrap_content"
