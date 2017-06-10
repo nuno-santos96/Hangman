@@ -3,10 +3,8 @@ package com.mycompany.hangman;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class word_screen extends AppCompatActivity {
 
@@ -16,7 +14,7 @@ public class word_screen extends AppCompatActivity {
         setContentView(R.layout.activity_word_screen);
     }
     public void play(View v){
-        String guessWord = ((EditText) findViewById(R.id.guess_word)).getText().toString();
+        String guessWord = ((EditText) findViewById(R.id.display_word)).getText().toString();
         Intent intent = new Intent(this, main_game.class);
         intent.putExtra("guessWord", guessWord);
         startActivity(intent);

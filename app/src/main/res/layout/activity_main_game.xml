@@ -6,28 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/letter"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:hint="Insert a letter" />
-
-    <Button
-        android:id="@+id/guess_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/letter"
-        android:layout_alignBottom="@+id/letter"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_toEndOf="@+id/letter"
-        android:layout_toRightOf="@+id/letter"
-        android:onClick="guess_letter"
-        android:text="Guess" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:onClick="guess_letter_button"
+        android:text="Guess a letter" />
 
     <ImageView
         android:id="@+id/hang"
@@ -38,13 +28,27 @@
         app:srcCompat="@drawable/hm1" />
 
     <TextView
-        android:id="@+id/guess_word"
+        android:id="@+id/display_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/hang"
+        android:layout_marginTop="23dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="36sp"
+        android:layout_above="@+id/button1" />
+
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/hang"
-        android:layout_alignStart="@+id/hang"
-        android:layout_below="@+id/hang"
-        android:layout_marginTop="84dp"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="36sp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/display_word"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:onClick="guess_word_button"
+        android:text="Guess the word" />
 </RelativeLayout>
