@@ -70,7 +70,11 @@ public class main_game extends AppCompatActivity {
     public void guess_letter(String letter) {
         boolean hit = false;
         available_letters.remove(letter);
-        //TODO: add letter to used letters textview
+
+        //add to used letters
+        TextView used_letters = (TextView) findViewById(R.id.used_letters);
+        used_letters.append(" " + letter);
+
         for (int i = 0; i < theWord.size(); i++) {
             if ((theWord.get(i).toLowerCase()).equals(letter.toLowerCase())){
                 display.set(i, theWord.get(i));
@@ -80,8 +84,7 @@ public class main_game extends AppCompatActivity {
         if (hit) {
             updateDisplay();
             if (TextUtils.join("", display).equals(TextUtils.join("", theWord))) {
-                //word successfully guessed - end game
-                finish();
+                end_game(true);
             }
         } else {
             updateHang();
@@ -90,9 +93,7 @@ public class main_game extends AppCompatActivity {
 
     public void guess_word(String word) {
         if (TextUtils.join("", theWord).equals(word)){
-            Intent intent = new Intent(this, word_screen.class);  //change to end_game activity
-            startActivity(intent);
-            finish();
+            end_game(true);
         } else {
             updateHang();
         }
@@ -109,10 +110,30 @@ public class main_game extends AppCompatActivity {
         Resources res = getResources();
         int hangID = res.getIdentifier("hm" + Integer.toString(curr_image) , "drawable", getPackageName());
         hang.setImageResource(hangID);
-        if (curr_image == 7){
-            //word not guessed - end game
-            finish();
+        if (curr_image == 7)
+            end_game(false);
+    }
+
+    public void end_game(boolean isVictory){
+        View b1 = findViewById(R.id.guess_letter_button);
+        View b2 = findViewById(R.id.guess_word_button);
+        b1.setVisibility(View.INVISIBLE);
+        b2.setVisibility(View.INVISIBLE);
+        View b3 = findViewById(R.id.restart_button);
+        b3.setVisibility(View.VISIBLE);
+        if (isVictory){
+            TextView victory = (TextView) findViewById(R.id.win_message);
+            victory.setVisibility(View.VISIBLE);
+        } else {
+            TextView defeat = (TextView) findViewById(R.id.lost_message);
+            defeat.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void restart(View v){
+        Intent intent = new Intent(this, word_screen.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onBackPressed() {

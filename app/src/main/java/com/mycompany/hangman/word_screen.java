@@ -15,10 +15,13 @@ public class word_screen extends AppCompatActivity {
     }
     public void play(View v){
         String guessWord = ((EditText) findViewById(R.id.display_word)).getText().toString();
-        Intent intent = new Intent(this, main_game.class);
-        intent.putExtra("guessWord", guessWord);
-        startActivity(intent);
-        finish();
+        guessWord = guessWord.trim();
+        if (!guessWord.equals("")) {
+            Intent intent = new Intent(this, main_game.class);
+            intent.putExtra("guessWord", guessWord);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onBackPressed() {

@@ -10,8 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLength="50"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-        android:hint="Insert the word to guess" />
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+        android:hint="Insert the guess" />
 
     <Button
         android:layout_width="wrap_content"

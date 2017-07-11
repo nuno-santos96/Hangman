@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/guess_letter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,24 +31,69 @@
         android:id="@+id/display_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/hang"
         android:layout_marginTop="23dp"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:layout_above="@+id/used_letters" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/guess_word_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/display_word"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
+        android:layout_alignBaseline="@+id/guess_letter_button"
+        android:layout_alignBottom="@+id/guess_letter_button"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_toEndOf="@+id/guess_letter_button"
+        android:layout_toRightOf="@+id/guess_letter_button"
         android:onClick="guess_word_button"
         android:text="Guess the word" />
+
+    <TextView
+        android:id="@+id/used_letters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Used letters:"
+        android:textSize="18sp"
+        android:layout_above="@+id/win_message"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/restart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="restart"
+        android:text="Restart"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/guess_letter_button"
+        android:layout_alignBottom="@+id/guess_letter_button"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/win_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Congratulations, you won"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        android:layout_above="@+id/guess_letter_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/lost_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Better luck next time"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/win_message"
+        android:layout_alignBottom="@+id/win_message"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
