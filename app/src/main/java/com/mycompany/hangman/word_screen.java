@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class word_screen extends AppCompatActivity {
 
     @Override
@@ -26,5 +33,24 @@ public class word_screen extends AppCompatActivity {
 
     public void onBackPressed() {
         finish();
+    }
+
+    public void random_word(View v){
+        List<String> words = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("words.txt")));
+            String word;
+            while ((word = reader.readLine()) != null) {
+                words.add(word);
+            }
+            Random randomGenerator = new Random();
+            int randomInt = randomGenerator.nextInt(words.size());
+            Intent intent = new Intent(this, main_game.class);
+            intent.putExtra("guessWord", words.get(randomInt));
+            startActivity(intent);
+            finish();
+        } catch (IOException ex) {
+
+        }
     }
 }

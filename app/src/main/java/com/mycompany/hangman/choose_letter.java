@@ -39,4 +39,8 @@ public class choose_letter extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    public void onBackPressed() {
+        finish();
+    }
 }

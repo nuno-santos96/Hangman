@@ -92,7 +92,9 @@ public class main_game extends AppCompatActivity {
     }
 
     public void guess_word(String word) {
-        if (TextUtils.join("", theWord).equals(word)){
+        if (TextUtils.join("", theWord).toLowerCase().equals(word.toLowerCase())){
+            TextView display = (TextView) findViewById(R.id.display_word);
+            display.setText(TextUtils.join(" ", theWord));
             end_game(true);
         } else {
             updateHang();
